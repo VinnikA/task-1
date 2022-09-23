@@ -16,7 +16,7 @@ function tableHeader(state, position) {
   return header;
 };
 
-function tableRow(keys, note, position) {
+function tableRow(keys, note, position, actions) {
   const styleMod = `table__row_${position}`;
   const row = element('div', `table__row ${styleMod}`);
   let iconName = icons[note.category] || icons[note['note category']];
@@ -37,17 +37,17 @@ function tableRow(keys, note, position) {
   });
   if(position === 'top') {
     const block = element('div', 'table__item', '');
-    block.append(iconBtnBlock());
+    block.append(iconBtnBlock(actions, note.id));
     row.append(block);
   }
   return row;
 }
 
-export function table(position, headerState, contentState) {
+export function table(position, headerState, contentState, actions) {
   const table = element('div', 'table');
   table.append(tableHeader(headerState, position));
   contentState.forEach(element => {
-    table.append(tableRow(headerState, element, position))
+    table.append(tableRow(headerState, element, position, actions))
   });
   return table;
 }

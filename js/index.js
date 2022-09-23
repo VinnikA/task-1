@@ -28,11 +28,25 @@ function createNote(e) {
   rentder(state);
 };
 
+const actions = {
+  edit(btn, id) {
+    console.log(btn.name, id);
+  },
+  archive(btn, id) {
+    console.log(btn.name, id);
+  },
+  remove(btn, id) {
+    console.log(btn.name, id);
+    state = state.filter(el => !(el.id === id));
+    rentder(state);
+  },
+};
+
 function rentder(state) {
   root.innerHTML = '';
 
   const topSection = element('section', 'section');
-  topSection.append(table('top', topTableTitles, state));
+  topSection.append(table('top', topTableTitles, state, actions));
   const btn = button('add note', handelClick);
   const topSectionBtn = element('div', 'btn-container', '', btn);
   topSection.append(topSectionBtn);

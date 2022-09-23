@@ -37,17 +37,18 @@ export function button(text, click, iconName) {
   return btn;
 };
 
-function iconBtn(func, iconName) {
+function iconBtn(func, iconName, name, id) {
   const btn = element('button', 'icon-btn');
-  btn.addEventListener('click', (e) => func(e));
+  btn.name = name;
+  btn.addEventListener('click', () => func(btn, id));
   btn.append(icon(iconName));
   return btn;
 }
 
-export function iconBtnBlock(edit, archive, remove) {
+export function iconBtnBlock({edit, archive, remove}, id) {
   const iconBtnBlock = element('div', 'icon-btn-block');
-  iconBtnBlock.append(iconBtn(edit, 'edit'));
-  iconBtnBlock.append(iconBtn(archive, 'download'));
-  iconBtnBlock.append(iconBtn(remove, 'trash'));
+  iconBtnBlock.append(iconBtn(edit, 'edit', 'edit', id));
+  iconBtnBlock.append(iconBtn(archive, 'download', 'archive', id));
+  iconBtnBlock.append(iconBtn(remove, 'trash', 'remove', id));
   return iconBtnBlock;
 }
