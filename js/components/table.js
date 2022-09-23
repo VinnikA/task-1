@@ -1,5 +1,5 @@
-import { element } from "./common.js";
-import { topTableTitles, bottomTableTitles } from "../storage.js";
+import { element, iconBlock, iconBtnBlock, roundIcon } from "./common.js";
+import { icons } from "../storage.js";
 
 function tableHeader(state, position) {
   const styleMod = `table__header_${position}`;
@@ -9,7 +9,9 @@ function tableHeader(state, position) {
     header.append(el);
   }
   if(position === 'top') {
-    header.append(element('div', 'table__title', ''))
+    const block = element('div', 'table__title', '');
+    block.append(iconBlock());
+    header.append(block);
   }
   return header;
 };
@@ -17,18 +19,26 @@ function tableHeader(state, position) {
 function tableRow(keys, note, position) {
   const styleMod = `table__row_${position}`;
   const row = element('div', `table__row ${styleMod}`);
+  let iconName = icons[note.category] || icons[note['note category']];
   keys.forEach(key => {
     let content = '';
     if(Array.isArray(note[key.toLowerCase()])) {
       content = note[key.toLowerCase()].join(' - ');
     } else {
       content = note[key.toLowerCase()];
-    }
-    const el = element('div', 'table__item', content);
-    row.append(el);
+    };
+    if(position === 'top' && key === 'Name' || position === 'bottom' && key === 'Note Category') {
+      const el = element('div', 'table__item table__item_first', content, roundIcon(iconName));
+      row.append(el);
+    } else {
+      const el = element('div', 'table__item', content);
+      row.append(el);
+    };
   });
   if(position === 'top') {
-    row.append(element('div', 'table__item', ''));
+    const block = element('div', 'table__item', '');
+    block.append(iconBtnBlock());
+    row.append(block);
   }
   return row;
 }

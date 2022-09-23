@@ -19,6 +19,13 @@ export const categories = [
   'Quote',
 ];
 
+export const icons = {
+  ['Task']: 'shopping-cart',
+  ['Random Thought']: 'random',
+  ['Idea']: 'lightbulb-o',
+  ['Quote']: 'quote-right',
+};
+
 class Note {
   constructor(id, category, name, content, created, dates, archived) {
     this.id = id;

@@ -44,8 +44,9 @@ body {
   grid-template-columns: 2fr 1fr 1fr;
 }
 .table__title {
+  position: relative;
   margin: 0 0 0 .5rem;
-  padding: 8px 0 8px .5rem;
+  padding: 8px 0 8px 8px;
   border-left: 1px solid var(--white);
 }
 /* table row */
@@ -56,12 +57,16 @@ body {
   color: var(--grey);
 }
 .table__item {
+  position: relative;
   margin: 0 0 0 .5rem;
-  padding: 8px 0 8px .5rem;
+  padding: 8px 0 8px 8px;
   border-left: 1px solid var(--grey);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.table__item_first {
+  padding: 8px 0 8px 48px;
 }
 .table__row_top {
   grid-template-columns: repeat(5, 1fr) 0.5fr;
@@ -142,4 +147,52 @@ body {
   flex-direction: column;
   gap: 8px;
   margin: 0 0 16px 0;
+}
+/* icon-block */
+.icon-block {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 16px;
+  padding: 0 8px;
+}
+/* icon-btn-block */
+.icon-btn-block {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 0 8px;
+}
+.icon-btn {
+  display: block;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  padding: 0 4px;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  color: var(--grey-dark);
+}
+.icon-btn:active {
+  color: var(--grey-light);
+}
+.round-icon {
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--grey);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -40,7 +40,7 @@ export function noteForm(submit, cancel) {
   const form = element('form', 'form');
   form.addEventListener('submit', submit);
   form.append(element('h2', 'form__heading', 'Create a new note'));
-  form.append(select('note category', categories, 'Choose a category'))
+  form.append(select('category', categories, 'Choose a category'))
   form.append(input('text','name', 'Note name'));
   form.append(textArea('content', 'Content'));
   form.append(input('date', 'start', 'Start date'));
