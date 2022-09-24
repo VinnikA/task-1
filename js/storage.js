@@ -47,4 +47,3 @@ export const notes = [
   new Note(6, 'Task', 'Cat', 'Buy cat\'s food', 'Sep 22, 2022', [], false),
   new Note(7, 'Quote', 'Gandhi', 'Be the change that you wish to see in the world', 'Sep 23, 2022', [], false),
 ];
-

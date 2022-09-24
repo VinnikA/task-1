@@ -22,10 +22,20 @@ export function timeMark() {
   return `${time[1]} ${time[2]}, ${time[3]}`;
 };
 
+const deleteZerro = (str) => str.replace(/^0+/, '');
+
 export function getDates(start, end) {
-  const s = start.split('-').reverse().join('/');
-  const e = end.split('-').reverse().join('/');
+  const s = start.split('-').map(el => deleteZerro(el)).reverse().join('/');
+  const e = end.split('-').map(el => deleteZerro(el)).reverse().join('/');
   return [s, e];
+};
+
+const addZerro = (str) => str.length === 1 ? '0' + str : str;
+
+export function getDate(strDate) {
+  const date = strDate.split('/').map(el => addZerro(el)).reverse().join('-');
+  console.log(date);
+  return date;
 };
 
 export class NewNote {

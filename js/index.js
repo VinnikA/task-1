@@ -3,6 +3,7 @@ import { notesConditionList, timeMark, getDates, NewNote } from './dataProcessin
 import { table } from './components/table.js';
 import { element, button,  } from './components/common.js';
 import { noteForm } from './components/noteForm.js';
+import { editForm } from './components/editForm.js';
 
 
 const root = document.querySelector('.root');
@@ -28,15 +29,28 @@ function createNote(e) {
   rentder(state);
 };
 
+function changeNote(note, e) {
+  e.preventDefault();
+  document.querySelector('.overlay').remove();
+  const {name, category, content, start, end} = e.target;
+  note.name = name.value;
+  note.category = category.value;
+  note.content = content.value;
+  note.dates = getDates(start.value, end.value);
+  rentder(state);
+};
+
 const actions = {
-  edit(btn, id) {
-    console.log(btn.name, id);
+  edit(id) {
+    const item = state.find(el => el.id === id);
+    root.append(editForm(item, changeNote, cancel));
   },
-  archive(btn, id) {
-    console.log(btn.name, id);
+  archive(id) {
+    const item = state.find(el => el.id === id);
+    item.archived = true;
+    rentder(state);
   },
-  remove(btn, id) {
-    console.log(btn.name, id);
+  remove(id) {
     state = state.filter(el => !(el.id === id));
     rentder(state);
   },

@@ -49,6 +49,9 @@ body {
   padding: 8px 0 8px 8px;
   border-left: 1px solid var(--white);
 }
+.table__title_last {
+  min-width: 100px;
+}
 /* table row */
 .table__row {
   display: grid;
@@ -67,6 +70,9 @@ body {
 }
 .table__item_first {
   padding: 8px 0 8px 48px;
+}
+.table__item_last {
+  min-width: 100px;
 }
 .table__row_top {
   grid-template-columns: repeat(5, 1fr) 0.5fr;
