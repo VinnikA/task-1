@@ -33,9 +33,7 @@ export function getDates(start, end) {
 const addZerro = (str) => str.length === 1 ? '0' + str : str;
 
 export function getDate(strDate) {
-  const date = strDate.split('/').map(el => addZerro(el)).reverse().join('-');
-  console.log(date);
-  return date;
+  return strDate.split('/').map(el => addZerro(el)).reverse().join('-');
 };
 
 export class NewNote {
@@ -47,5 +45,13 @@ export class NewNote {
     this.created = created;
     this.dates = dates;
     this.archived = false;
+  }
+};
+
+export const getSring = (content) => {
+  if(Array.isArray(content)) {
+    return content[0].length && content[1].length ? content.join(' - ') : content.join('');
+  } else {
+    return content;
   }
 };

@@ -1,5 +1,6 @@
-import { element, iconBlock, iconBtnBlock, roundIcon } from "./common.js";
-import { icons } from "../storage.js";
+import { element, iconBlock, iconBtnBlock, roundIcon } from './common.js';
+import { icons } from '../storage.js';
+import { getSring } from '../dataProcessing.js';
 
 function tableHeader(state, position) {
   const styleMod = `table__header_${position}`;
@@ -17,12 +18,8 @@ function tableHeader(state, position) {
 };
 
 function tableRowItem(note, key, position, iconName){
-  let content = '';
-  if(Array.isArray(note[key.toLowerCase()])) {
-    content = note[key.toLowerCase()].join(' - ');
-  } else {
-    content = note[key.toLowerCase()];
-  };
+  let content = note[key.toLowerCase()];
+  content = getSring(content);
   if(position === 'top' && key === 'Name' || position === 'bottom' && key === 'Note Category') {
     const el = element('div', 'table__item table__item_first', content, roundIcon(iconName));
     return el;
@@ -47,7 +44,7 @@ function tableRow(keys, note, position, actions) {
   return row;
 }
 
-export function table(position, headerState, contentState, actions) {
+export default function table(position, headerState, contentState, actions) {
   const table = element('div', 'table');
   table.append(tableHeader(headerState, position));
   contentState.forEach(element => {

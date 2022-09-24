@@ -1,10 +1,9 @@
 import { topTableTitles, bottomTableTitles, notes, categories } from './storage.js';
 import { notesConditionList, timeMark, getDates, NewNote } from './dataProcessing.js';
-import { table } from './components/table.js';
+import table from './components/table.js';
+import noteForm from './components/noteForm.js';
+import editForm from './components/editForm.js';
 import { element, button,  } from './components/common.js';
-import { noteForm } from './components/noteForm.js';
-import { editForm } from './components/editForm.js';
-
 
 const root = document.querySelector('.root');
 let state = [...notes];

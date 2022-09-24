@@ -37,6 +37,13 @@ export function button(text, click, iconName) {
   return btn;
 };
 
+export function btnContainer(cancel) {
+  const container = element('div', 'btn-container');
+  container.append(button('submit'));
+  container.append(button('cancel', cancel));
+  return container;
+};
+
 function iconBtn(func, iconName, id) {
   const btn = element('button', 'icon-btn');
   btn.addEventListener('click', () => func(id));
@@ -51,3 +58,45 @@ export function iconBtnBlock({edit, archive, remove}, id) {
   iconBtnBlock.append(iconBtn(remove, 'trash', id));
   return iconBtnBlock;
 }
+
+export function input(type, name, text, value) {
+  const input = element('input', 'form__input');
+  input.type = type;
+  if(value) {
+    input.value = value;
+  };
+  input.name = name;
+  input.placeholder = name;
+  const label = element('label', 'form__label', `${text}: `, input);
+  return label;
+};
+
+export function textArea(name, text, value) {
+  const input = element('textarea', 'form__input');
+  if(value) {
+    input.value = value;
+  };
+  input.name = name;
+  input.placeholder = name;
+  const label = element('label', 'form__label', `${text}: `, input);
+  return label;
+};
+
+function option(value) {
+  const option = element('option', '', value);
+  option.value = value;
+  return option;
+};
+
+export function select(name, categories, text, value) {
+  const select = element('select', 'form__select');
+  select.name = name;
+  if(value) {
+    select.value = value;
+  }
+  categories.forEach(item => {
+    select.append(option(item));
+  });
+  const label = element('label', 'form__label', `${text}: `, select);
+  return label;
+};
